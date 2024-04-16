@@ -1,1 +1,1 @@
-# PixelSynC-
+# PixelSynC++
