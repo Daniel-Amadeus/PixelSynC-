@@ -3,8 +3,20 @@ cmake_minimum_required(VERSION 3.28.0)
 project(PixelSynCPlusPlus)
 set(CMAKE_CXX_STANDARD 20)
 
+find_package(Qt6 REQUIRED COMPONENTS Widgets)
+qt_standard_project_setup()
+
 # main executable
 add_executable(${PROJECT_NAME} main.cpp)
+
+target_link_libraries(${PROJECT_NAME}
+  PRIVATE Qt6::Widgets
+)
+
+set_target_properties(${PROJECT_NAME} PROPERTIES
+  WIN32_EXECUTABLE OFF
+  MACOSX_BUNDLE ON
+)
 
 # Google Test
 include(FetchContent)
