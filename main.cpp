@@ -1,11 +1,13 @@
 #include <iostream>
-#include <QCoreApplication>
+#include <QApplication>
+
+#include "mainwindow.h"
 
 int main(int argc, char *argv[])
 {
-    std::cout << "PixelSynC++\n";
-
-    QCoreApplication app(argc, argv);
+    QApplication app(argc, argv);
+    MainWindow window;
+    window.show();
 
     return app.exec();
 }
