@@ -11,6 +11,9 @@ class MainWindow : public QMainWindow
     explicit MainWindow(QWidget *parent = nullptr);
 
   private:
+    void initGlDock();
+
+  private:
     QDockWidget *editorDock;
     QDockWidget *previewDock;
 };
