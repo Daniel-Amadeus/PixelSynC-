@@ -15,6 +15,9 @@ class GLWidget : public QOpenGLWidget, protected QOpenGLFunctions
     GLWidget(QWidget *parent = nullptr);
     ~GLWidget();
 
+  public slots:
+    void cleanup();
+
   protected:
     void initializeGL() override;
     void paintGL() override;

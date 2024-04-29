@@ -8,10 +8,13 @@ GLWidget::GLWidget(QWidget *parent) : QOpenGLWidget(parent)
 
 GLWidget::~GLWidget()
 {
+    cleanup();
 }
 
 void GLWidget::initializeGL()
 {
+    connect(context(), &QOpenGLContext::aboutToBeDestroyed, this, &GLWidget::cleanup);
+
     initializeOpenGLFunctions();
     glClearColor(0, 0, 0, 1);
 
@@ -49,4 +52,15 @@ void GLWidget::paintGL()
     glDisableVertexAttribArray(posAttr);
 
     program->release();
+}
+
+void GLWidget::cleanup()
+{
+    if (program == nullptr)
+        return;
+    makeCurrent();
+    delete program;
+    program = nullptr;
+    doneCurrent();
+    QObject::disconnect(context(), &QOpenGLContext::aboutToBeDestroyed, this, &GLWidget::cleanup);
 }
