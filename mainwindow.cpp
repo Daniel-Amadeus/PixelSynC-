@@ -14,6 +14,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 
     previewDock = new QDockWidget("Preview", this);
     previewDock->setFeatures(QDockWidget::DockWidgetMovable | QDockWidget::DockWidgetFloatable);
-    previewDock->setWidget(new GLWidget(previewDock));
     addDockWidget(Qt::RightDockWidgetArea, previewDock);
+
+    auto glWidget = new GLWidget(previewDock);
+    previewDock->setWidget(glWidget);
 }
