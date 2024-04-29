@@ -3,16 +3,18 @@ cmake_minimum_required(VERSION 3.28.0)
 project(PixelSynCPlusPlus)
 set(CMAKE_CXX_STANDARD 20)
 
-find_package(Qt6 REQUIRED COMPONENTS Widgets)
+find_package(Qt6 REQUIRED COMPONENTS Widgets OpenGLWidgets)
 qt_standard_project_setup()
 
 # main executable
 add_executable(${PROJECT_NAME}
   main.cpp
-  mainwindow.cpp)
+  mainwindow.cpp
+  glwidget.cpp)
 
 target_link_libraries(${PROJECT_NAME}
   PRIVATE Qt6::Widgets
+  Qt6::OpenGLWidgets
 )
 
 set_target_properties(${PROJECT_NAME} PROPERTIES
