@@ -1,18 +1,5 @@
 #include "glwidget.h"
 
-static const char *vertexShaderSource = "attribute highp vec4 posAttr;\n"
-                                        "attribute lowp vec2 uvAttr;\n"
-                                        "varying lowp vec2 uv;\n"
-                                        "void main() {\n"
-                                        "   uv = uvAttr;\n"
-                                        "   gl_Position = posAttr;\n"
-                                        "}\n";
-
-static const char *fragmentShaderSource = "varying lowp vec2 uv;\n"
-                                          "void main() {\n"
-                                          "   gl_FragColor = vec4(step(0.5, uv), 0.0, 1.0);\n"
-                                          "}\n";
-
 GLWidget::GLWidget(QWidget *parent) : QOpenGLWidget(parent)
 {
     setFixedSize(200, 200);
@@ -29,8 +16,8 @@ void GLWidget::initializeGL()
     glClearColor(0, 0, 0, 1);
 
     program = new QOpenGLShaderProgram;
-    program->addShaderFromSourceCode(QOpenGLShader::Vertex, vertexShaderSource);
-    program->addShaderFromSourceCode(QOpenGLShader::Fragment, fragmentShaderSource);
+    program->addShaderFromSourceCode(QOpenGLShader::Vertex, vertexShader.c_str());
+    program->addShaderFromSourceCode(QOpenGLShader::Fragment, fragmentShader.c_str());
     program->link();
 
     program->bind();
